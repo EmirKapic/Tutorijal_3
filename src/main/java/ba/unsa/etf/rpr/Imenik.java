@@ -23,9 +23,9 @@ public class Imenik {
     /**
      * Returns the phone number that belongs to the person passed as parameter, otherwise throws exception if it
      * doesn't exist.
-     * @param ime
+     * @param ime of the person we're looking for
      * @return phone number
-     * @throws EntryNotFoundException
+     * @throws EntryNotFoundException if the name doesn't exist in the phonebook
      */
     String dajBroj(String ime) throws EntryNotFoundException {
         if (imenik.containsKey(ime)){
@@ -39,9 +39,9 @@ public class Imenik {
     /**
      * Returns the name of the person whose phone number was passed as parameter, otherwise throws exception
      * if it doesn't exist.
-     * @param broj
+     * @param broj number of the person we're looking for
      * @return name
-     * @throws EntryNotFoundException
+     * @throws EntryNotFoundException if the given number doesn't exist in the phonebook
      */
     public String dajIme(TelefonskiBroj broj) throws EntryNotFoundException {
         if (imenik.containsValue(broj)){
@@ -56,20 +56,20 @@ public class Imenik {
 
     /**
      * Returns all numbers that belong to a person whose name begins with an 'S'
-     * @param s
-     * @return
+     * @param s the letter with which the name starts
+     * @return a
      */
     String naSlovo(char s){
         String result = "";
         for (Map.Entry<String,TelefonskiBroj> entry : imenik.entrySet())
-                if (entry.getKey().charAt(0) == 'S')
-                    result += entry.getKey().toString() + " - " + entry.getValue().toString() + "\n";
+                if (entry.getKey().charAt(0) == Character.toUpperCase(s))
+                    result += entry.getKey() + " - " + entry.getValue().toString() + "\n";
         return result;
     }
 
     /**
      * returns a set of names of all people that live in the city passed as parameter
-     * @param g
+     * @param g the city that we're looking for
      * @return set of strings
      */
     Set<String> izGrada(Grad g){
